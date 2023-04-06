@@ -3,7 +3,7 @@ language: generic
 sudo: required
 
 services:
-  - docker # d앱을 도커 환경에서 실행하고 있으니 Travis Ci 에게 도커환경으로 만들 것이라고 선언
+  - docker # 앱을 도커 환경에서 실행하고 있으니 Travis Ci 에게 도커환경으로 만들 것이라고 선언
 
 before_install:
   - docker build -t joneheejin/react-test-app -f ./frontend/Dockerfile.dev ./frontend
