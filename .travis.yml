@@ -14,7 +14,7 @@ script:
 after_success:
   # 각각의 이미지 빌드하기
   - docker build -t jeonheejin/docker-frontend -f ./frontend/Dockerfile.prd ./frontend
-  - docker build -t joneheejin/docker-backend -f ./frontend/Dockerfile.prd ./backend
+  - docker build -t joneheejin/docker-backend -f ./backend/Dockerfile.prd ./backend
   - docker build -t joneheejin/docker-proxy     ./proxy
   # 도커 허브에 로그인
   - echo "$DOCKER_HUB_PASSWORD" | docker login -u "$DOCKER_HUB_ID" --password-stdin
