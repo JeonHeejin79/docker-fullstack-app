@@ -1,37 +1,46 @@
-version: "3"
+version: "2.4"
 services:
   frontend:
-    build: # 개발환경을 위한 Dockerfile 이 어디있는지 알려준다. 
-      dockerfile: Dockerfile.dev
-      context: ./frontend
+    image: joneheejin/docker-frontend
+    # build: # 개발환경을 위한 Dockerfile 이 어디있는지 알려준다. 
+    #   dockerfile: Dockerfile.dev
+    #   context: ./frontend
     volumes: # 코드를 수정 후 다시 아미지를 build 하는것 없이 수정된 코드가 반영이 될 수 있도록 volume 을 이용해준다.
       - /app/node_modules
       - ./frontend:/app
     stdin_open: true # 리액트 앱을 종료할떄 나오는 버그를 잡아줌
+    mem_limit: 128m
 
   proxy:
   # 재시작 정책 ("no":어떤 상황에서도 재시작을 하지 않는다, "always":항상 재시작을 한다, "on-failure":컨테이너가 멈추었을때만 재시작, "unless-stopped" :개발자가 임의로 멈추려고 할떄 빼고는 항상 재시작 )
-    restart: always 
-    build:
-      dockerfile: Dockerfile
-      context: ./proxy
+    restart: always
+    image: joneheejin/docker-proxy
+    # build:
+    #   dockerfile: Dockerfile
+    #   context: ./proxy
     ports:
-      - "3000:80"
+      - "80:80"
+    mem_limit: 128m
+    links:
+      - frontend
+      - backend
 
   backend:
-    build:
-      dockerfile: Dockerfile.dev
-      context: ./backend
+    image: joneheejin/docker-backend
+    # build:
+    #   dockerfile: Dockerfile.dev
+    #   context: ./backend
     container_name: app_backend
     volumes:
       - /app/node_modules
       - ./backend:/app
     environment:
-      MYSQL_HOST: mysql
+      MYSQL_HOST: docker-fullstack-mysql.cr49sfowwtzn.ap-northeast-2.rds.amazonaws.com
       MYSQL_USER: root
       MYSQL_ROOT_PASSWORD: 1q2w3e4r
       MYSQL_DATABASE: myapp
       MYSQL_PORT: 3306
+    mem_limit: 128m
 
   # mysql:
   #   build: ./mysql
