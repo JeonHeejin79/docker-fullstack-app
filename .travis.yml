@@ -23,3 +23,17 @@ after_success:
   - docker push joneheejin/docker-backend
   - docker push joneheejin/docker-proxy
 
+# 배포 부분
+deploy:
+  provider: elasticbeanstalk # 외부 서비스 표시 (s3,elasticbeanstalk, firebase 등)
+  region: "ap-northeast-2" # 현재 사용하고 있는 AWS의 서비스가 위치하고 있는 물리적 장소
+  app: "docker-fullstack-app" # 생성된 애플리케이션의 이름 
+  env: "Dockerfullstackapp-env" # DockerFullstackApp-env
+  buckect_name: elasticbeanstalk-ap-northeast-2-415603219820 # 해당 elasticbeanstalk 을 위한 s3 버켓 이름
+  bucket_path: "docker-fullstack-app" # 어플리케이션의 이름 (app) 과 동일 ex) elasticbeanstalk-app
+  on:
+    branch: master # 어떤 브랜치에 Push 할떄 AWS 에 배포를 할지
+
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_ACCESS_KEY
+
