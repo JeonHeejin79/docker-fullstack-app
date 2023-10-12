@@ -12,7 +12,7 @@ services:
     mem_limit: 128m
 
   proxy:
-  # 재시작 정책 ("no":어떤 상황에서도 재시작을 하지 않는다, "always":항상 재시작을 한다, "on-failure":컨테이너가 멈추었을때만 재시작, "unless-stopped" :개발자가 임의로 멈추려고 할떄 빼고는 항상 재시작 )
+  # 재시작 정책 ("no":어떤 상황에서도 재시작을 하지 않는다, "always":항상 재시작을 한다, "on-failure":컨테이너가 멈추었을때만 재시작, "unless-stopped":개발자가 임의로 멈추려고 할떄 빼고는 항상 재시작 )
     restart: always
     image: joneheejin/docker-proxy
     # build:

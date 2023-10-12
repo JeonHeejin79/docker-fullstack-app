@@ -6,16 +6,16 @@ services:
   - docker # 앱을 도커 환경에서 실행하고 있으니 Travis Ci 에게 도커환경으로 만들 것이라고 선언.
 
 before_install:
-  - docker build -t joneheejin/react-test-app -f ./frontend/Dockerfile.dev ./frontend
+  - docker build -t joneheejin/react-test-app -f ./frontend/Dockerfile.dev ./frontend # 이미지 생성
 
 script:
-  - docker run -e CI=true joneheejin/react-test-app npm run test # 테스트 수행하기
+  - docker run -e CI=true joneheejin/react-test-app npm run test # 테스트 수행
 
 after_success:
-  # 각각의 이미지 빌드하기
+  # 각각의 운영버전 이미지 빌드
   - docker build -t joneheejin/docker-frontend -f ./frontend/Dockerfile.prd ./frontend
   - docker build -t joneheejin/docker-backend -f ./backend/Dockerfile.prd ./backend
-  - docker build -t joneheejin/docker-proxy     ./proxy
+  - docker build -t joneheejin/docker-proxy ./proxy
   # 도커 허브에 로그인
   - echo "$DOCKER_HUB_PASSWORD" | docker login -u "$DOCKER_HUB_ID" --password-stdin
   # 빌드된 이미지들을 도커 허브에 Push 하기
