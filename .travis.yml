@@ -28,7 +28,7 @@ deploy:
   provider: elasticbeanstalk # 외부 서비스 표시 (s3,elasticbeanstalk, firebase 등)
   region: "ap-northeast-2" # 현재 사용하고 있는 AWS의 서비스가 위치하고 있는 물리적 장소
   app: "docker-fullstack-app" # 생성된 애플리케이션의 이름 
-  env: "Dockerfullstackapp-env" # DockerFullstackApp-env
+  env: "Docker-fullstack-app-env" # DockerFullstackApp-env
   buckect_name: elasticbeanstalk-ap-northeast-2-415603219820 # 해당 elasticbeanstalk 을 위한 s3 버켓 이름
   bucket_path: "docker-fullstack-app" # 어플리케이션의 이름 (app) 과 동일 ex) elasticbeanstalk-app
   on:
