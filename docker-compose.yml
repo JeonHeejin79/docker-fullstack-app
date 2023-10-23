@@ -34,7 +34,7 @@ services:
       - /app/node_modules
       - ./backend:/app
     environment:
-      MYSQL_HOST: docker-fullstack-mysql.cr49sfowwtzn.ap-northeast-2.rds.amazonaws.com # RDS 의 엔트포인트명
+      MYSQL_HOST: myapp
       MYSQL_USER: root
       MYSQL_ROOT_PASSWORD: 1q2w3e4r
       MYSQL_DATABASE: myapp
