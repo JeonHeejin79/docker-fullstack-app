@@ -1,6 +1,13 @@
+# 베이스 이미지를 도커 허브에서 가져온다. 
 FROM node:alpine
+# 해당 어플의 소스 코드들이 들어가게 된다. 
 WORKDIR /app
+# 소스코드가 바뀔때 마다 종속성까지 다시 복사를 해주는 수고를 하지 않기 위해 먼저 종속성
+# 목록을 담고 있는 package.json 을 복사한다.
 COPY package.json ./
+# package.json 에 명시된 종속성을 다운받는다.
 RUN npm install
+# 모든 소스 코드들을 WORKIR로 복사는 해준다.
 COPY ./ ./
+# 이 컨테이너가 실행될 때 같이 실행할 명령어를 지정해준다.
 CMD ["npm","run","start"]

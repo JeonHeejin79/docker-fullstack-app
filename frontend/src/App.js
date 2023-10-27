@@ -37,6 +37,21 @@ function App() {
       })
   }
 
+  const deleteHandler = (event) => {
+    event.preventDefault();
+
+    axios.post('/api/deleteValue', { id: event.currentTarget.parentElement.value })
+      .then(response => {
+        if (response.data.success) {
+          alert('response lists '+ response.data.id + " data deleted")
+          location.reload();
+        } else {
+          alert('삭제에 실패했습니다.')
+        }
+      })
+  }
+
+
   return (
     <div className="App">
       <header className="App-header">
@@ -45,7 +60,9 @@ function App() {
         <div className="container">
 
           {lists && lists.map((list, index) => (
-            <li key={index}>{list.value}</li>
+            <li key={index} value={list.id}>{list.value}
+              &nbsp;<button onClick={deleteHandler}>삭제</button>
+            </li>
           ))}
           <br />
 

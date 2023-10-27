@@ -1,4 +1,5 @@
 const mysql = require("mysql");
+
 const pool = mysql.createPool({
     connectionLimit: 10,
     host: process.env.MYSQL_HOST,
@@ -6,6 +7,15 @@ const pool = mysql.createPool({
     password: process.env.MYSQL_ROOT_PASSWORD,
     database: process.env.MYSQL_DATABASE,
     port: process.env.MYSQL_PORT
+});
+
+const poolDev = mysql.createPool({
+    connectionLimit: 10,
+    host: 'mysql',
+    user: 'root',
+    password: '1q2w3e4r',
+    database: 'myapp',
+    port: '3306'
 });
 
 exports.pool = pool;
