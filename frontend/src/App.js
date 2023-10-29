@@ -31,6 +31,7 @@ function App() {
           console.log('response', response)
           setLists([...lists, response.data])
           setValue("")
+          window.location.reload()
         } else {
           alert('값을 DB 에 넣는데 실패했습니다.')
         }
@@ -44,7 +45,7 @@ function App() {
       .then(response => {
         if (response.data.success) {
           alert('response lists '+ response.data.id + " data deleted")
-          location.reload();
+          window.location.reload()
         } else {
           alert('삭제에 실패했습니다.')
         }
