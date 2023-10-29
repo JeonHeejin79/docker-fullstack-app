@@ -18,4 +18,4 @@ const poolDev = mysql.createPool({
     port: '3306'
 });
 
-exports.pool = poolDev;
+exports.pool = pool;
