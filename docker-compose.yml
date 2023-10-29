@@ -30,6 +30,7 @@ services:
     #   dockerfile: Dockerfile.dev
     #   context: ./backend
     container_name: app_backend
+    # 데이터 베이스의 저장된 자료를 컨테이너를 지줘도 데이터가 지워지지 않을 수 있게 하기위한 볼륨
     volumes:
       - /app/node_modules
       - ./backend:/app
