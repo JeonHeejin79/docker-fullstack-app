@@ -31,7 +31,7 @@ function App() {
           console.log('response', response)
           setLists([...lists, response.data])
           setValue("")
-          window.location.reload()
+          window.location.reload();
         } else {
           alert('값을 DB 에 넣는데 실패했습니다.')
         }
