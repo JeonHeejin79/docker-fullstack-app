@@ -32,7 +32,7 @@ deploy:
   buckect_name: "elasticbeanstalk-ap-northeast-2-415603219820" # 해당 elasticbeanstalk 을 위한 s3 버켓 이름
   bucket_path: "docker-fullstack-app" # 어플리케이션의 이름 (app) 과 동일 ex) elasticbeanstalk-app
   on:
-    branch: master # 어떤 브랜치에 Push할떄 AWS에 배포를 할지
+    branch: master # 어떤 브랜치에 Push할떄 AWS 에 배포를 할지
 
   access_key_id: $AWS_ACCESS_KEY
   secret_access_key: $AWS_SECRET_ACCESS_KEY
